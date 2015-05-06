@@ -40,6 +40,7 @@
 		 * Use entire space between top and bottom margins.
 		 * 
 		 */
+		 
 		.inner-container{
 			position:relative;
 			margin: auto;
@@ -48,7 +49,7 @@
 		}
 		
 	</style>
-	<script src="hammer.js"></script>
+	<script src="shaker.js"></script>
 	<script>
 
 
@@ -95,31 +96,9 @@
 
 
 			/* Hide logotype on start */
-			document.getElementById("Logo").setAttribute('visibility', 'hidden');
+//			document.getElementById("Logo").setAttribute('visibility', 'hidden');
 
 			var gameElement = document.getElementById("game");
-			/* double tap fires */	
-			Hammer(gameElement).on("doubletap", function(event) {
-				fire();
-			});	
-
-			/* Drag moves the rocket */
-			var rocketElement = document.getElementById('Rocket');
-			Hammer(rocketElement).on("drag", function(event) {
-					rocketX=rocketStartX+(Math.round(event.gesture['deltaX']));
-					/* Make sure we don't move outside the playing field */
-					if (rocketX<ROCKET_MIN_POS){
-						rocketX = ROCKET_MIN_POS;
-					} else if (rocketX>ROCKET_MAX_POS) {
-						rocketX = ROCKET_MAX_POS;
-					}
-					
-			});		
-			
-			/* Remember our release point for future reference */
-			Hammer(rocketElement).on("dragend", function(event) {
-					rocketStartX=rocketX;
-			});		
 			
 			game = setInterval(function(){gameloop();}, 30);
 				
