@@ -88,12 +88,17 @@
 		// Game loop - called every 30th m-second.
 		function gameloop()
 		{		
+				// Update Rocket!
+				document.getElementById('Rocket').setAttribute('transform', 'translate('+rocketX+',720)');
+   			rocketX-=shaker.getOrientation().oaccG*0.1;
+   			if(rocketX<30) rocketX=30;
+   			if(rocketX>560) rocketX=560;
+
 				if(gamestate==1){
 				
 						document.getElementById('Spaceship').setAttribute('transform', 'translate('+alienX+','+ALIEN_Y+')');
 						document.getElementById('WhiteWalker').setAttribute('transform', 'translate('+alienX+','+ALIEN_Y+')');
 						document.getElementById('Bomb').setAttribute('transform', 'translate('+bombX+','+bombY+')');
-						document.getElementById('Rocket').setAttribute('transform', 'translate('+rocketX+',720)');
 						document.getElementById('Fireball').setAttribute('transform', 'translate('+fireBallX+','+fireBallY+') rotate(' +(frame*25.0)+')');
 						
 						frame++;
@@ -153,6 +158,7 @@
 
 						document.getElementById('Logo').setAttribute('transform', 'translate(0,'+(shaker.getOrientation().oaccB*1.0)+')');
 						document.getElementById('Attack').setAttribute('transform', 'translate(0,'+(shaker.getOrientation().oaccB*3.0)+')');
+
 
 				}
 
