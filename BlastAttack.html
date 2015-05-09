@@ -69,6 +69,7 @@
 			shaker.on("shake",function(o){
 					if(gamestate==0){
 							gamestate=1;
+							startGame();
 							alert("Start!");
 					}else if(gamestate==1){
 							// Fire fireball!
@@ -106,8 +107,8 @@
 
 				if(gamestate==1){
 				
-						document.getElementById("Logo").setAttribute('visibility', 'none');
-						document.getElementById("Attack").setAttribute('visibility', 'none');			
+						document.getElementById("Logo").setAttribute('visibility', 'hidden');
+						document.getElementById("Attack").setAttribute('visibility', 'hidden');			
 
 						document.getElementById('Spaceship').setAttribute('transform', 'translate('+alienX+','+ALIEN_Y+')');
 						document.getElementById('WhiteWalker').setAttribute('transform', 'translate('+alienX+','+ALIEN_Y+')');
