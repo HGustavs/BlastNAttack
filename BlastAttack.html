@@ -66,6 +66,16 @@
 	
 			shaker.on("tilt",function(o){});
 									
+			shaker.on("shake",function(o){
+					if(gamestate==0){
+							gamestate=1;
+							alert("Start!");
+					}else if(gamestate==1){
+							// Fire fireball!
+							
+					}
+			});
+				
 			game = setInterval(function(){gameloop();}, 30);
 		}
 		
@@ -96,6 +106,9 @@
 
 				if(gamestate==1){
 				
+						document.getElementById("Logo").setAttribute('visibility', 'none');
+						document.getElementById("Attack").setAttribute('visibility', 'none');			
+
 						document.getElementById('Spaceship').setAttribute('transform', 'translate('+alienX+','+ALIEN_Y+')');
 						document.getElementById('WhiteWalker').setAttribute('transform', 'translate('+alienX+','+ALIEN_Y+')');
 						document.getElementById('Bomb').setAttribute('transform', 'translate('+bombX+','+bombY+')');
