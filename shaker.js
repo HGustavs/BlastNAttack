@@ -210,8 +210,8 @@ THE SOFTWARE.
 		window.shaker={}
 		
 		shaker.shaketreshold = 4;
-		shaker.stepfrequency = 500; 
-		shaker.shakefrequency = 1500; 
+		shaker.stepfrequency = 200; 
+		shaker.shakefrequency = 500; 
 
 		shaker.hasGeoLocation = false;
 		shaker.geolocationcallback = null;
