@@ -3,9 +3,18 @@
 	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" >
 	<style>
 		
-		body {
+		body{
 			margin: 0;
-			background-color:#3c3443;
+			background-color:#3c3443;		
+		}
+		
+		#content{
+			position:absolute;
+			left:0;
+			top:0;
+			width:100%;
+			height:100%;
+			overflow:hidden;
 		}
 
 		#BlastNAttack {
@@ -68,12 +77,12 @@
 			shaker.on("tilt",function(o){});
 									
 			shaker.on("shake",function(o){
+					console.log("Shake");
 					if(gamestate==0){
 							gamestate=1;
 							startGame();
-							alert("Start!");
 					}else if(gamestate==1){
-
+							fire();
 					}
 
 			});
@@ -139,36 +148,32 @@
 				if(gamestate==1){
 						
 						frame++;
-						
-						// Progressively speed up alien shooting 
 						if(frame%30==0&&bombYadd<80) bombYadd+=3; 
 						
-						// Move alien 
+						// Move alien and if larger than max or smaller than min change direction
 						alienX+=alienXadd;
-						// Change direction if at the play area edge 
 						if(alienX>ALIEN_MAX_POS||alienX<ALIEN_MIN_POS) alienXadd=-alienXadd;
 		
-						// Animate bomb, when bomb has fallen too far; restart 
+						// Animate bomb, when bomb has fallen to edge of screen; restart 
 						bombY+=bombYadd;
 						if(bombY>BOMB_STOP_Y){
 								bombY=BOMB_START_Y;
 								bombX=alienX;
-								
 								points += DODGE_SCORE;
 						}
 		
-						// Animate fireball, when fireball has moved too far; hide until firing again 
+						// Animate fireball, when fireball has moved to edge of screen; hide until firing again 
 						if(fireBallX>FIREBALL_HIDDEN){
 								fireBallY-=3;
 								if(fireBallY<FIREBALL_STOP_Y) fireBallX=FIREBALL_HIDDEN;
 						}
 						
-						// We dodged a bomb
+						// We are hit by a bomb
 						if(bombY>580&&bombY<840&&Math.abs(bombX-rocketX)<50) {
 								
 						}
 						
-						// We hit alien 
+						// We hit alien with fireball
 						if(fireBallY>10&&fireBallY<160&&Math.abs(alienX-fireBallX)<75){
 
 								points +=HIT_SCORE; 
@@ -198,10 +203,11 @@
 <html>
 
 <body onload="startUp();">
+	<div id="content">
 
 
 <svg version="1.1" id="BlastNAttack" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="595.279px" height="841.89px" viewBox="0 0 595.279 841.89" enable-background="new 0 0 595.279 841.89"
+	 width="595.279px" height="841.89px" viewBox="0 0 595.279 841.89" preserveAspectRatio="xMinYMin meet" enable-background="new 0 0 595.279 841.89"
 	 xml:space="preserve">
 <g>
 	<defs>
@@ -1486,6 +1492,7 @@
 </svg>
 
 <div id="score">TKong</div>
+</div>
 
 </body>
 
